@@ -5,7 +5,6 @@ use std::{
 
 #[cfg(feature = "snappy")]
 const SNAPPY_VERSION: &'static str = "1.1.7";
-const LEVELDB_VERSION: &'static str = "1.22";
 /// Directory name within `$OUT_DIR` where the static libraries should be built.
 const LIBDIR: &'static str = "lib";
 
@@ -44,7 +43,7 @@ fn build_leveldb(snappy_prefix: Option<PathBuf>) {
 
     env::set_var("NUM_JOBS", num_cpus::get().to_string());
     let mut config =
-        cmake::Config::new(Path::new("deps").join(format!("leveldb-{}", LEVELDB_VERSION)));
+        cmake::Config::new(Path::new("deps").join("leveldb"));
     config
         .define("LEVELDB_BUILD_TESTS", "OFF")
         .define("LEVELDB_BUILD_BENCHMARKS", "OFF")
